@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Busca de Produtos</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="search-container">
+        <h2>Buscar Produtos</h2>
+        <h2>Testar SQLi</h2>
+        <form method="POST" action="/search">
+            <input type="text" name="query" placeholder="Digite o nome do produto..." required><br>
+            <button type="submit">Buscar</button>
+        </form>
+        {% if produtos %}
+            <h3>Resultados:</h3>
+            <ul>
+                {% for product in produtos %}
+                    <li>{{ product[1] }} - R$ {{ product[2] }}</li>
+                {% endfor %}
+            </ul>
+        {% elif message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
